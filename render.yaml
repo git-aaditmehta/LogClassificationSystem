@@ -1,0 +1,25 @@
+services:
+  # Backend API Service
+  - type: web
+    name: log-classification-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+
+  # Frontend Streamlit Service
+  - type: web
+    name: log-classification-frontend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run frontend.py --server.port $PORT --server.address 0.0.0.0
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+      - key: BACKEND_URL
+        fromService:
+          name: log-classification-api
+          type: web
+          property: url 
