@@ -1,0 +1,23 @@
+# Virtual environments
+venv/
+env/
+.venv/
+__pycache__/
+*.py[cod]
+
+# Large files and dependencies
+*.dll
+*.lib
+*.so
+*.dylib
+site-packages/
+
+# IDE files
+.idea/
+.vscode/
+
+# Data files
+data/
+*.csv
+*.pkl
+*.pt
